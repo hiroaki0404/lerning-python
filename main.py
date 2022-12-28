@@ -30,7 +30,7 @@ def count_blow(com_num: str, player_num: str, hit_num: int) -> int:
     count: int = 0
 
     for i in range(4):
-        if com_num[i] in player_num:
+        if player_num[i] in com_num:
             count += 1
     return count - hit_num
 
