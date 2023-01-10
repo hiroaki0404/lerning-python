@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hit and Blow</title>
+    </head>
+    <body>
+        <h1>Conguraturation!</h1>
+        {% for h in session["history"]: %}
+            {{h[0]}} {{h[1]}} hit {{h[2]}} blow <br />
+        {% endfor %}
+        <a href="/"> Replay</a>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+.gcloudignore
+.git
+.gitignore
+.devcontainer/
+.vscode/
+LICENSE
+README.md
+Pipfile
+Pipfile.lock
+
+#!include:.gitignore

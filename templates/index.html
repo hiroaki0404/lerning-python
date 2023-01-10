@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hit and Blow</title>
+    </head>
+    <body>
+        <form action="/" method="post">
+            <input type="text" name="number" maxlength="4" required />
+            <input type="submit" value="Judge" />
+        </form>
+        <hr />
+        {% for h in session["history"]: %}
+            {{h[0]}} {{h[1]}} hit {{h[2]}} blow <br />
+        {% endfor %}
+    </body>
+</html>
