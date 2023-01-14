@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 #
 # Hit and Blow
-#   文字列で扱えばx桁目の数字を簡単に扱える
+#   使われている数字の種類を数える
 #   
 import random
 
 def is_number_correct(target: str) -> bool:
-    if target[1] == target[0] or \
-        target[2] == target[1] or target[2] == target[0] or \
-        target[3] == target[2] or target[3] == target[1] or target[3] == target[0]:
-        return False
-    return True
+    s = set()
+    for c in target:
+        s.add(c)
+
+    return len(s) == len(target)
 
 def target_num() -> str:
     while True:
