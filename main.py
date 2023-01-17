@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #
 # Hit and Blow
-#   Web version
+#   Cloud Functions version
 #   
 import random
 from flask import Flask, render_template, request, session
+import functions_framework
 
-app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+functions_framework.flask.Flask.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 def is_number_correct(target: str) -> bool:
@@ -47,14 +47,12 @@ def judge(com_num: str, player_num: str) -> tuple[str, int, int]:
 
     return player_num, hit_num, blow_num
 
-@app.route("/", methods = ["GET"])
 def main():
     session["target"] = target_num()
     session["history"] = []
     return render_template("index.html")
 
-@app.route("/", methods=["POST"])
-def play():
+def play(request):
     t: str = "0000" + (request.form.get("number") or "" )
     p: str = t[len(t)-4:]
     j = judge(session["target"], p)
@@ -65,5 +63,8 @@ def play():
         return render_template("win.html")
     return render_template("index.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@functions_framework.http
+def hit_and_blow(request):
+    if request.method == "POST":
+        return play(request)
+    return main()
